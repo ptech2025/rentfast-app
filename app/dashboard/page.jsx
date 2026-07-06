@@ -4,11 +4,9 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-interface Property { id: string; address: string; unit?: string; }
-interface Summary { totalDue: number; totalReceived: number; recentPayments: any[]; }
 export default function Dashboard() {
-  const [properties, setProperties] = useState<Property[]>([]);
-  const [summary, setSummary] = useState<Summary | null>(null);
+  const [properties, setProperties] = useState([]);
+  const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showAddProperty, setShowAddProperty] = useState(false);
   const [newProperty, setNewProperty] = useState({ address: '', unit: '' });
@@ -32,7 +30,7 @@ export default function Dashboard() {
       setLoading(false);
     }
   };
-  const handleAddProperty = async (e: React.FormEvent) => {
+  const handleAddProperty = async (e) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');

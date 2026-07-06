@@ -11,7 +11,7 @@ export default function Auth() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -23,7 +23,7 @@ export default function Auth() {
         localStorage.setItem('token', response.data.token);
         router.push('/dashboard');
       }
-    } catch (err: any) {
+    } catch (err) {
       setError(err.response?.data?.error || 'Authentication failed');
     }
     setLoading(false);
@@ -51,7 +51,7 @@ export default function Auth() {
               {isSignup && (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="John Doe" required={isSignup} className="w-full px-4 py-3 border border-green-200 rounded-lg focus:ring-2 focus:ring-[#2d6a4f] focus:border-transparent outline-none transition" />
+                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="John Doe" required className="w-full px-4 py-3 border border-green-200 rounded-lg focus:ring-2 focus:ring-[#2d6a4f] focus:border-transparent outline-none transition" />
                 </div>
               )}
               <div>
