@@ -4,16 +4,15 @@ import axios from 'axios';
 import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-interface Tenant { id: string; name: string; email: string; monthly_rent: number; }
 export default function PropertyDetails() {
-  const [property, setProperty] = useState<any>(null);
-  const [tenants, setTenants] = useState<Tenant[]>([]);
+  const [property, setProperty] = useState(null);
+  const [tenants, setTenants] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAddTenant, setShowAddTenant] = useState(false);
   const [newTenant, setNewTenant] = useState({ name: '', email: '', phone: '', monthly_rent: '' });
   const router = useRouter();
   const params = useParams();
-  const propertyId = params.id as string;
+  const propertyId = params.id;
   useEffect(() => { fetchTenants(); }, [propertyId]);
   const fetchTenants = async () => {
     try {
@@ -28,7 +27,7 @@ export default function PropertyDetails() {
       setLoading(false);
     }
   };
-  const handleAddTenant = async (e: React.FormEvent) => {
+  const handleAddTenant = async (e) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
