@@ -63,7 +63,7 @@ export default function Auth() {
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required className="w-full px-4 py-3 border border-green-200 rounded-lg focus:ring-2 focus:ring-[#2d6a4f] focus:border-transparent outline-none transition" />
               </div>
               {error && <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-red-900 text-sm">{error}</div>}
-              <button type="submit" disabled={loading} className="w-full px-4 py-3 bg-[#2d6a4f] hover:bg-green-800 text-white font-medium rounded-lg transition disabled:bg-gray-400 mt-6">
+              <button type="submit" disabled={loading} className="btn-primary w-full hover:bg-green-800 text-white font-medium rounded-lg transition disabled:bg-gray-400 mt-6">
                 {loading ? 'Loading...' : isSignup ? 'Create Account' : 'Sign In'}
               </button>
             </form>
