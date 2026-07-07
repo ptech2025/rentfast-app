@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
-import pool from '../../../../lib/db';
+import getPool from '../../../../lib/db';
 import { createToken } from '../../../../lib/auth';
 
 export async function POST(request) {
   try {
+    const pool = getPool();
     const { email, password, name } = await request.json();
     if (!email || !password || !name) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });

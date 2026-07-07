@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import pool from '../../../../lib/db';
+import getPool from '../../../../lib/db';
 import { createToken } from '../../../../lib/auth';
 export async function POST(request) {
   try {
+    const pool = getPool();
     const { email, password } = await request.json();
     const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
     if (result.rows.length === 0) return NextResponse.json({ error: 'User not found' }, { status: 400 });

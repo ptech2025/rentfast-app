@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
-import pool from '../../../lib/db';
+import getPool from '../../../lib/db';
 import { authenticateToken } from '../../../lib/auth';
 export async function GET(request) {
   try {
